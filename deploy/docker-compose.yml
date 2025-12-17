@@ -1,0 +1,67 @@
+services:
+  dispatcher-backend:
+    platform: ${DOCKER_DEFAULT_PLATFORM:-linux/arm64}
+    build:
+      context: ..
+      dockerfile: services/dispatcher-routing-app/backend/Dockerfile
+    env_file:
+      - ./env/stack.env
+      - ./env/dispatcher.env
+    environment:
+      - DATA_DIR=/data
+    ports:
+      - "${DISPATCHER_BACKEND_PORT:-8000}:${DISPATCHER_BACKEND_PORT:-8000}"
+    volumes:
+      - ../services/dispatcher-routing-app/app/backend:/app
+      - ../libs:/libs
+      - ../deploy/data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:${DISPATCHER_BACKEND_PORT:-8000}/health || curl -f http://localhost:${DISPATCHER_BACKEND_PORT:-8000}/ || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  dispatcher-frontend:
+    platform: ${DOCKER_DEFAULT_PLATFORM:-linux/arm64}
+    build:
+      context: ..
+      dockerfile: services/dispatcher-routing-app/frontend/Dockerfile
+    env_file:
+      - ./env/stack.env
+      - ./env/dispatcher.env
+    ports:
+      - "${DISPATCHER_FRONTEND_PORT:-4173}:${DISPATCHER_FRONTEND_PORT:-4173}"
+    volumes:
+      - ../services/dispatcher-routing-app/app/frontend:/app
+    restart: unless-stopped
+
+  mdsn-photo-ingest:
+    platform: ${DOCKER_DEFAULT_PLATFORM:-linux/arm64}
+    build:
+      context: ..
+      dockerfile: services/mdsn-photo-ingest/Dockerfile
+    env_file:
+      - ./env/stack.env
+      - ./env/photo_ingest.env
+    environment:
+      - DATA_DIR=/data
+    ports:
+      - "${MDSN_PORT:-5055}:${MDSN_PORT:-5055}"
+    volumes:
+      - ../services/mdsn-photo-ingest/dev_inbox:/app/dev_inbox
+      - ../deploy/data:/data
+      - tmpfs:/tmp
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:${MDSN_PORT:-5055}/health || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  tmpfs:
+    driver: local
+    driver_opts:
+      type: tmpfs
+      device: tmpfs

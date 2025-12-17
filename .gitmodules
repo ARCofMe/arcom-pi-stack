@@ -1,0 +1,12 @@
+[submodule "libs/bluefolder-api"]
+	path = libs/bluefolder-api
+	url = https://github.com/ARCofMe/bluefolder-api.git
+[submodule "libs/optimized-routing-extension"]
+	path = libs/optimized-routing-extension
+	url = https://github.com/ARCofMe/optimized-routing-extension.git
+[submodule "services/dispatcher-routing-app/app"]
+	path = services/dispatcher-routing-app/app
+	url = https://github.com/ARCofMe/dispatcher-routing-app.git
+[submodule "services/mdsn-photo-ingest/external"]
+	path = services/mdsn-photo-ingest/external
+	url = https://github.com/ARCofMe/photo_ingest.git
