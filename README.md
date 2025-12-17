@@ -67,6 +67,8 @@ After the stack is up:
 - dispatcher-frontend: http://localhost:4173 (binds `0.0.0.0`, accessible on LAN via Pi IP/hostname)
 - mdsn-photo-ingest health: http://localhost:5055/health
 
+If the frontend is bind-mounted for live code, node modules live in a named volume (`node_modules_frontend`). The entrypoint will run `npm install` if they are missing.
+
 Logs:
 ```bash
 docker compose -f deploy/docker-compose.yml logs -f mdsn-photo-ingest

@@ -21,4 +21,7 @@ RUN if [ -f package.json ]; then npm install; else echo "No package.json found; 
 
 EXPOSE ${DISPATCHER_FRONTEND_PORT:-4173}
 
-CMD ["sh", "-c", "${DISPATCHER_FRONTEND_CMD:-node /app/placeholder-server.js}"]
+COPY services/dispatcher-routing-app/frontend/entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+
+CMD ["sh", "-c", "${DISPATCHER_FRONTEND_CMD:-npm run dev -- --host 0.0.0.0 --port ${DISPATCHER_FRONTEND_PORT:-4173}}"]

@@ -34,6 +34,7 @@ services:
       - "${DISPATCHER_FRONTEND_PORT:-4173}:${DISPATCHER_FRONTEND_PORT:-4173}"
     volumes:
       - ../services/dispatcher-routing-app/app/frontend:/app
+      - node_modules_frontend:/app/node_modules
     restart: unless-stopped
 
   mdsn-photo-ingest:
@@ -65,3 +66,4 @@ volumes:
     driver_opts:
       type: tmpfs
       device: tmpfs
+  node_modules_frontend:

@@ -18,7 +18,7 @@ RUN if [ -f /src/mdsn/external/requirements.txt ]; then \
     else \
         cp /src/mdsn/requirements.txt /app/requirements.txt ; \
     fi
-RUN pip install --no-cache-dir -r /app/requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt && pip install --no-cache-dir gunicorn
 
 # Attempt editable installs of shared libs; fall back to PYTHONPATH if metadata is missing.
 RUN (pip install --no-cache-dir -e /libs/bluefolder-api || echo "TODO: ensure bluefolder-api is installable; falling back to PYTHONPATH") \
