@@ -38,6 +38,7 @@ Step-by-step to bring the stack up on a Raspberry Pi 4.
    cp deploy/env/photo_ingest.env.example deploy/env/photo_ingest.env
    # edit values as needed (ports, commands, API keys)
    ```
+   - For BlueFolder attachments, set `BLUEFOLDER_ATTACHMENTS_BASE_URL=https://api.bluefolder.com/api/2.0` (global endpoint) and point `BLUEFOLDER_BASE_URL` to your account host (e.g., `https://menhcomputers.bluefolder.com`).
 
 5) Start the stack
    - On Pi: builds use arm64 by default.

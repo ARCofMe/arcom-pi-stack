@@ -46,6 +46,7 @@ Key variables:
 - `DISPATCHER_BACKEND_CMD`, `DISPATCHER_FRONTEND_CMD`: how to start the dispatcher processes inside the containers.
 - `INGEST_MODE`: `simulate` (default) watches `services/mdsn-photo-ingest/dev_inbox/<SRID>/` for images.
 - `BLUEFOLDER_API_KEY`: required once real attachments are enabled.
+- `BLUEFOLDER_ATTACHMENTS_BASE_URL`: use `https://api.bluefolder.com/api/2.0` for the global attachment endpoint (preferred) and set `BLUEFOLDER_BASE_URL` to your account host (e.g., `https://menhcomputers.bluefolder.com`).
 
 ## Running Locally
 On x86/mac hosts, avoid qemu emulation by setting `DOCKER_DEFAULT_PLATFORM` to your native arch (e.g., `linux/amd64`) when building:
