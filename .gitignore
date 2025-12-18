@@ -27,6 +27,7 @@ deploy/data/
 deploy/env/*.env
 deploy/env/*.local
 backups/
+services/mdsn-photo-ingest/dev_inbox/
 
 # Misc
 *.log
