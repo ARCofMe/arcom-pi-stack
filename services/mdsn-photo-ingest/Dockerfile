@@ -36,4 +36,7 @@ RUN mkdir -p /data
 
 EXPOSE 5055
 
+COPY services/mdsn-photo-ingest/entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+
 CMD ["sh", "-c", "gunicorn -b 0.0.0.0:${MDSN_PORT:-5055} --workers 1 --threads 2 app.main:app"]

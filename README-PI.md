@@ -59,7 +59,7 @@ Step-by-step to bring the stack up on a Raspberry Pi 4.
 
 7) Simulate photo ingest (optional)
    - With `INGEST_MODE=simulate`, drop images in `services/mdsn-photo-ingest/dev_inbox/<SRID>/`.
-   - The app will parse SRID from the folder/subject name and log to SQLite under `deploy/data/mdsn_photo_ingest.db`.
+   - The container will run `python simulate.py` (from the photo_ingest repo) to process new files and log to SQLite under `deploy/data/mdsn_photo_ingest.db`.
 
 8) Backups
    ```bash

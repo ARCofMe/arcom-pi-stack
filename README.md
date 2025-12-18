@@ -69,6 +69,8 @@ After the stack is up:
 
 If the frontend is bind-mounted for live code, node modules live in a named volume (`node_modules_frontend`). The entrypoint will run `npm install` if they are missing.
 
+Photo ingest simulator: when `INGEST_MODE=simulate`, the container runs `python simulate.py` (from the photo_ingest repo) and watches `services/mdsn-photo-ingest/dev_inbox/<SRID>/` for images.
+
 Logs:
 ```bash
 docker compose -f deploy/docker-compose.yml logs -f mdsn-photo-ingest
