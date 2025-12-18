@@ -51,6 +51,7 @@ services:
       - "${MDSN_PORT:-5055}:${MDSN_PORT:-5055}"
     volumes:
       - ../services/mdsn-photo-ingest/dev_inbox:/app/dev_inbox
+      - ../libs:/libs
       - ../deploy/data:/data
       - tmpfs:/tmp
     restart: unless-stopped
