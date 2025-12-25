@@ -17,7 +17,7 @@ services:
       - ../deploy/data:/data
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:${DISPATCHER_BACKEND_PORT:-8000}/health || curl -f http://localhost:${DISPATCHER_BACKEND_PORT:-8000}/ || exit 1"]
+      test: ["CMD-SHELL", "curl -f http://localhost:${DISPATCHER_BACKEND_PORT:-8000}/health || exit 1"]
       interval: 30s
       timeout: 5s
       retries: 3
